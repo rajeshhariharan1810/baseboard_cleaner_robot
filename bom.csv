@@ -1,0 +1,16 @@
+Item,Component,Qty,Material/Spec
+1,Body Shell,1,ABS Plastic
+2,Chassis,1,ABS Plastic
+3,Top Cover,1,ABS Plastic
+4,Drive Wheel,2,TPU Rubber
+5,Guide Wheel,4,TPU Rubber
+6,Drive Axle,1,Stainless Steel - dia 4mm
+7,Cleaning Brush Core,1,Nylon
+8,Brush Drive Shaft,1,Stainless Steel - dia 6mm
+9,Brush Guard,1,ABS Plastic
+10,Motor (N20 DC),1,COTS - 6V 200RPM
+11,Motor Bracket,1,ABS Plastic
+12,Battery Tray,1,ABS Plastic
+13,18650 Li-ion Cell,2,COTS - 3.7V 3000mAh
+14,M3 x 10mm Screw,8,Stainless Steel
+15,Guide Bracket,4,ABS Plastic
