@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baseboard Cleaning Robot — Fusion 360 CAD Project</title>
+<meta name="description" content="A parametric CAD model of an autonomous baseboard-cleaning robot, designed in Fusion 360.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1c1c1a;
+    --bg-raised: #242422;
+    --line: #3a3a36;
+    --line-strong: #52514a;
+    --text: #ebe9e2;
+    --text-dim: #9c9a90;
+    --text-faint: #6f6e66;
+    --accent: #7fa86b;
+    --accent-dim: #5c7d4c;
+    --max: 760px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .rail {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .wide { max-width: 1000px; }
+
+  section { padding: 72px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0 0 16px;
+  }
+
+  h2 { font-size: 26px; }
+
+  p { margin: 0 0 16px; color: var(--text-dim); max-width: 65ch; }
+
+  .mono { font-family: var(--font-mono); }
+
+  /* Hero */
+  .hero { padding-top: 96px; }
+  .hero .kicker {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    margin: 0 0 20px;
+    opacity: 0;
+    animation: rise 0.6s ease-out 0.05s forwards;
+  }
+  .hero h1 {
+    font-size: 44px;
+    max-width: 12ch;
+    opacity: 0;
+    animation: rise 0.6s ease-out 0.15s forwards;
+  }
+  .hero .lede {
+    font-size: 18px;
+    max-width: 46ch;
+    color: var(--text-dim);
+    opacity: 0;
+    animation: rise 0.6s ease-out 0.3s forwards;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .kicker, .hero h1, .hero .lede { animation: none; opacity: 1; }
+  }
+
+  .hero-image {
+    margin-top: 48px;
+    aspect-ratio: 16/10;
+    border: 1px dashed var(--line-strong);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-raised);
+  }
+  .hero-image .ph-label { font-family: var(--font-mono); font-size: 13px; color: var(--text-faint); text-align: center; }
+
+  /* Spec strip */
+  .specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .spec {
+    flex: 1 1 140px;
+    padding: 24px;
+    border-right: 1px solid var(--line);
+  }
+  .spec:last-child { border-right: none; }
+  .spec .val { font-family: var(--font-mono); font-size: 22px; color: var(--text); }
+  .spec .lbl { font-size: 13px; color: var(--text-faint); margin-top: 4px; }
+
+  /* Case studies */
+  .case {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 24px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+  .case:last-child { padding-bottom: 0; }
+  .case .num { font-family: var(--font-mono); color: var(--text-faint); font-size: 14px; padding-top: 2px; }
+  .case h3 { font-size: 18px; margin-bottom: 12px; }
+  .case dl { margin: 0; }
+  .case dt {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 14px;
+  }
+  .case dt:first-child { margin-top: 0; }
+  .case dd { margin: 4px 0 0; color: var(--text-dim); }
+
+  @media (max-width: 560px) {
+    .case { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* Simplifications */
+  .simple-list { list-style: none; margin: 0; padding: 0; }
+  .simple-list li {
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    color: var(--text-dim);
+    font-size: 15px;
+  }
+  .simple-list li:last-child { border-bottom: 1px solid var(--line); }
+  .simple-list .tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  /* Gallery */
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 720px) { .gallery { grid-template-columns: 1fr; } }
+  .plate {
+    aspect-ratio: 4/3;
+    border: 1px dashed var(--line-strong);
+    border-radius: 4px;
+    background: var(--bg-raised);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .plate .ph-label { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); text-align: center; padding: 12px; }
+  figcaption { font-size: 13px; color: var(--text-faint); margin-top: 8px; }
+
+  /* Parameter table */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 12px; border-top: 1px solid var(--line); }
+  th { font-family: var(--font-mono); font-weight: 400; font-size: 12px; color: var(--text-faint); }
+  td:nth-child(2), td:nth-child(3) { font-family: var(--font-mono); color: var(--text); }
+  td:first-child { color: var(--text); }
+
+  /* Footer */
+  footer { padding: 48px 0 80px; }
+  .foot-links { display: flex; gap: 24px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 14px; }
+  .foot-links a { text-decoration: none; }
+  .foot-links a:hover { text-decoration: underline; }
+  .credit { margin-top: 40px; font-size: 13px; color: var(--text-faint); }
+</style>
+</head>
+<body>
+
+<header class="hero rail">
+  <p class="kicker">Fusion 360 · Parametric assembly · 15 components</p>
+  <h1>Baseboard Cleaning Robot</h1>
+  <p class="lede">An autonomous device that travels along a wall using a rotating brush to clean baseboard trim — modeled end to end as a parametric CAD assembly.</p>
+  <div class="hero-image">
+    <span class="ph-label">Primary isometric render<br>→ assets/renders/isometric.png</span>
+  </div>
+</header>
+
+<section class="specs rail wide">
+  <div class="spec"><div class="val">220 × 85 × 65</div><div class="lbl">overall dimensions (mm)</div></div>
+  <div class="spec"><div class="val">⌀35</div><div class="lbl">drive wheel</div></div>
+  <div class="spec"><div class="val">⌀28 × 70</div><div class="lbl">brush core</div></div>
+  <div class="spec"><div class="val">15</div><div class="lbl">modeled components</div></div>
+</section>
+
+<section class="rail">
+  <h2>Design intent</h2>
+  <p>The device is built around a single rotating brush that sweeps debris out of the seam between a wall and its baseboard trim, guided along the wall by two pairs of free-spinning side wheels. The front face is drafted 15° outward so the body glides past inside corners instead of catching on them. Everything downstream — the drive wheel spacing, the brush slot, the interior layout — follows from that basic idea rather than being decided independently.</p>
+</section>
+
+<section class="rail">
+  <h2>Problem-solving along the way</h2>
+  <p>A handful of the more instructive decisions in this build, kept because the reasoning behind each one is more useful than a smooth final render on its own.</p>
+
+  <div class="case">
+    <div class="num mono">01</div>
+    <div>
+      <h3>Axle bracket cradle built on the wrong sketch plane</h3>
+      <dl>
+        <dt>Problem</dt>
+        <dd>The U-shaped brackets that cradle the drive axle were sketched on a plane that didn't match the axle's actual rotation axis, misaligning the cradle geometry entirely.</dd>
+        <dt>Reasoning</dt>
+        <dd>The axle runs along the chassis's width axis, so its cross-section needed a sketch plane perpendicular to that axis — not parallel to it, which is what the original plane gave.</dd>
+        <dt>Decision</dt>
+        <dd>Rebuilt both bracket sketches on the corrected plane and verified alignment from a front-view screenshot before committing to the extrude.</dd>
+        <dt>Tradeoff</dt>
+        <dd>None — caught before any other geometry depended on it.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="num mono">02</div>
+    <div>
+      <h3>Motor and brush shaft competing for the same interior space</h3>
+      <dl>
+        <dt>Problem</dt>
+        <dd>A direct in-line coupling between the motor and the brush shaft needed more axial length than the chassis interior actually had — the brush and shaft alone nearly filled the available width.</dd>
+        <dt>Reasoning</dt>
+        <dd>Checked the actual numbers rather than the layout as drawn: roughly 77mm of usable interior width against 90mm-plus needed for brush, shaft, and motor placed end to end.</dd>
+        <dt>Decision</dt>
+        <dd>Moved the motor onto a perpendicular axis near one end of the brush instead of forcing a straight-through fit — closer to how compact devices actually route power through an offset drive.</dd>
+        <dt>Tradeoff</dt>
+        <dd>The physical coupling between motor and brush shaft is left as a positioned approximation rather than a modeled mechanism.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="num mono">03</div>
+    <div>
+      <h3>Battery cell height exceeding the shell height</h3>
+      <dl>
+        <dt>Problem</dt>
+        <dd>An upright 18650 cell is 65mm tall; the body shell it needed to fit inside is only 55mm.</dd>
+        <dt>Reasoning</dt>
+        <dd>Checked the real dimensions of the component being placed against a shell height that was already fixed, rather than assuming the two would agree.</dd>
+        <dt>Decision</dt>
+        <dd>Reoriented both cells to lie on their side — which is also closer to how most compact devices actually package cylindrical cells.</dd>
+        <dt>Tradeoff</dt>
+        <dd>Required reworking the battery tray's cavity orientation to match.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="num mono">04</div>
+    <div>
+      <h3>A mounting hole larger than the bracket meant to hold it</h3>
+      <dl>
+        <dt>Problem</dt>
+        <dd>The motor mounting bracket's crossbar was specified at 8mm tall, but needed to contain a 22.2mm clearance hole for the motor body.</dd>
+        <dt>Reasoning</dt>
+        <dd>Worked backward from the wall thickness the hole actually needed around it, instead of treating the original bracket dimensions as fixed.</dd>
+        <dt>Decision</dt>
+        <dd>Redesigned the bracket as a single plate with adequate material around the bore, rather than patching the original two-piece shape.</dd>
+        <dt>Tradeoff</dt>
+        <dd>Departs from the original reference sketch, but is structurally sound.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="rail">
+  <h2>What's deliberately simplified</h2>
+  <p>A model built for a portfolio, not for manufacturing — these are the places that show, stated plainly rather than left for someone else to find.</p>
+  <ul class="simple-list">
+    <li><span class="tag mono">cosmetic</span>The helical bristle ridge on the brush core is a surface detail for the render, not a modeled bristle field.</li>
+    <li><span class="tag mono">non-functional</span>The lid's snap clips are shown at their final seated geometry — flex isn't simulated.</li>
+    <li><span class="tag mono">approximated</span>The motor-to-brush drive is shown as a positioned gap between two shaft ends, not a modeled coupling.</li>
+    <li><span class="tag mono">duplicated</span>The two battery cells are identical repeated instances, not independently modeled or wired.</li>
+  </ul>
+</section>
+
+<section class="rail wide">
+  <h2>Renders</h2>
+  <div class="gallery">
+    <figure>
+      <div class="plate"><span class="ph-label">Isometric<br>renders/isometric.png</span></div>
+      <figcaption>Primary view</figcaption>
+    </figure>
+    <figure>
+      <div class="plate"><span class="ph-label">Front elevation<br>renders/front.png</span></div>
+      <figcaption>Brush slot and guide wheels</figcaption>
+    </figure>
+    <figure>
+      <div class="plate"><span class="ph-label">Exploded view<br>renders/exploded.png</span></div>
+      <figcaption>Assembly breakdown</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="rail wide">
+  <h2>Parameters</h2>
+  <p>The full assembly is driven from one document-level parameter table, so a single value change (say, brush diameter) propagates through every dependent sketch.</p>
+  <table>
+    <thead><tr><th>Parameter</th><th>Value</th><th>Drives</th></tr></thead>
+    <tbody>
+      <tr><td>body_length</td><td>220 mm</td><td>Overall chassis length</td></tr>
+      <tr><td>body_width</td><td>85 mm</td><td>Overall chassis width</td></tr>
+      <tr><td>body_height</td><td>55 mm</td><td>Main body height (excl. wheels)</td></tr>
+      <tr><td>wall_thickness</td><td>4 mm</td><td>Shell wall thickness</td></tr>
+      <tr><td>wheel_diameter</td><td>35 mm</td><td>Drive wheel outer diameter</td></tr>
+      <tr><td>wheel_width</td><td>12 mm</td><td>Drive wheel axial width</td></tr>
+      <tr><td>brush_diameter</td><td>28 mm</td><td>Cleaning brush outer diameter</td></tr>
+      <tr><td>brush_length</td><td>70 mm</td><td>Cleaning brush length</td></tr>
+      <tr><td>axle_diameter</td><td>4 mm</td><td>All axle diameters</td></tr>
+      <tr><td>guide_wheel_dia</td><td>20 mm</td><td>Side guide wheel diameter</td></tr>
+      <tr><td>battery_dia</td><td>18.6 mm</td><td>18650 cell diameter</td></tr>
+      <tr><td>battery_length</td><td>65 mm</td><td>18650 cell length</td></tr>
+      <tr><td>motor_dia</td><td>22 mm</td><td>N20 DC motor diameter</td></tr>
+      <tr><td>motor_length</td><td>35 mm</td><td>N20 DC motor length</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="rail">
+  <h2>Drawing &amp; bill of materials</h2>
+  <p>Full engineering drawing (A3, three orthographic views plus isometric) and a 15-line bill of materials covering both modeled parts and off-the-shelf components.</p>
+  <div class="foot-links" style="margin-top: 8px;">
+    <a href="assets/drawings/Baseboard_Cleaner_Drawing.pdf">Engineering drawing (PDF) ↗</a>
+    <a href="assets/bom.csv">Bill of materials (CSV) ↗</a>
+  </div>
+</section>
+
+<footer class="rail">
+  <div class="foot-links">
+    <a href="https://github.com/">Source repository ↗</a>
+    <a href="mailto:you@example.com">Contact</a>
+  </div>
+  <p class="credit mono">Modeled in Autodesk Fusion 360.</p>
+</footer>
+
+</body>
+</html>
