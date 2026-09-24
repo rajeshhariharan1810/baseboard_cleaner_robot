@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +25,11 @@
     --font-body: 'Inter', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
   html { scroll-behavior: smooth; }
-
+ 
   body {
     margin: 0;
     background: var(--bg);
@@ -38,34 +39,34 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
-
+ 
   a { color: var(--accent); }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
+ 
   .rail {
     max-width: var(--max);
     margin: 0 auto;
     padding: 0 24px;
   }
-
+ 
   .wide { max-width: 1000px; }
-
+ 
   section { padding: 72px 0; border-bottom: 1px solid var(--line); }
   section:last-of-type { border-bottom: none; }
-
+ 
   h1, h2, h3 {
     font-family: var(--font-display);
     font-weight: 500;
     line-height: 1.15;
     margin: 0 0 16px;
   }
-
+ 
   h2 { font-size: 26px; }
-
+ 
   p { margin: 0 0 16px; color: var(--text-dim); max-width: 65ch; }
-
+ 
   .mono { font-family: var(--font-mono); }
-
+ 
   /* Hero */
   .hero { padding-top: 96px; }
   .hero .kicker {
@@ -89,7 +90,7 @@
     opacity: 0;
     animation: rise 0.6s ease-out 0.3s forwards;
   }
-
+ 
   @keyframes rise {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -97,7 +98,7 @@
   @media (prefers-reduced-motion: reduce) {
     .hero .kicker, .hero h1, .hero .lede { animation: none; opacity: 1; }
   }
-
+ 
   .hero-image {
     margin-top: 48px;
     aspect-ratio: 16/10;
@@ -109,7 +110,7 @@
     background: var(--bg-raised);
   }
   .hero-image .ph-label { font-family: var(--font-mono); font-size: 13px; color: var(--text-faint); text-align: center; }
-
+ 
   /* Spec strip */
   .specs {
     display: flex;
@@ -126,7 +127,7 @@
   .spec:last-child { border-right: none; }
   .spec .val { font-family: var(--font-mono); font-size: 22px; color: var(--text); }
   .spec .lbl { font-size: 13px; color: var(--text-faint); margin-top: 4px; }
-
+ 
   /* Case studies */
   .case {
     display: grid;
@@ -147,11 +148,11 @@
   }
   .case dt:first-child { margin-top: 0; }
   .case dd { margin: 4px 0 0; color: var(--text-dim); }
-
+ 
   @media (max-width: 560px) {
     .case { grid-template-columns: 1fr; gap: 8px; }
   }
-
+ 
   /* Simplifications */
   .simple-list { list-style: none; margin: 0; padding: 0; }
   .simple-list li {
@@ -168,7 +169,7 @@
     display: inline-block;
     margin-right: 10px;
   }
-
+ 
   /* Gallery */
   .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   @media (max-width: 720px) { .gallery { grid-template-columns: 1fr; } }
@@ -183,14 +184,14 @@
   }
   .plate .ph-label { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); text-align: center; padding: 12px; }
   figcaption { font-size: 13px; color: var(--text-faint); margin-top: 8px; }
-
+ 
   /* Parameter table */
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   th, td { text-align: left; padding: 10px 12px; border-top: 1px solid var(--line); }
   th { font-family: var(--font-mono); font-weight: 400; font-size: 12px; color: var(--text-faint); }
   td:nth-child(2), td:nth-child(3) { font-family: var(--font-mono); color: var(--text); }
   td:first-child { color: var(--text); }
-
+ 
   /* Footer */
   footer { padding: 48px 0 80px; }
   .foot-links { display: flex; gap: 24px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 14px; }
@@ -200,7 +201,7 @@
 </style>
 </head>
 <body>
-
+ 
 <header class="hero rail">
   <p class="kicker">Fusion 360 · Parametric assembly · 15 components</p>
   <h1>Baseboard Cleaning Robot</h1>
@@ -209,23 +210,23 @@
     <span class="ph-label">Primary isometric render<br>→ assets/renders/isometric.png</span>
   </div>
 </header>
-
+ 
 <section class="specs rail wide">
   <div class="spec"><div class="val">220 × 85 × 65</div><div class="lbl">overall dimensions (mm)</div></div>
   <div class="spec"><div class="val">⌀35</div><div class="lbl">drive wheel</div></div>
   <div class="spec"><div class="val">⌀28 × 70</div><div class="lbl">brush core</div></div>
   <div class="spec"><div class="val">15</div><div class="lbl">modeled components</div></div>
 </section>
-
+ 
 <section class="rail">
   <h2>Design intent</h2>
   <p>The device is built around a single rotating brush that sweeps debris out of the seam between a wall and its baseboard trim, guided along the wall by two pairs of free-spinning side wheels. The front face is drafted 15° outward so the body glides past inside corners instead of catching on them. Everything downstream — the drive wheel spacing, the brush slot, the interior layout — follows from that basic idea rather than being decided independently.</p>
 </section>
-
+ 
 <section class="rail">
   <h2>Problem-solving along the way</h2>
   <p>A handful of the more instructive decisions in this build, kept because the reasoning behind each one is more useful than a smooth final render on its own.</p>
-
+ 
   <div class="case">
     <div class="num mono">01</div>
     <div>
@@ -242,7 +243,7 @@
       </dl>
     </div>
   </div>
-
+ 
   <div class="case">
     <div class="num mono">02</div>
     <div>
@@ -259,7 +260,7 @@
       </dl>
     </div>
   </div>
-
+ 
   <div class="case">
     <div class="num mono">03</div>
     <div>
@@ -276,7 +277,7 @@
       </dl>
     </div>
   </div>
-
+ 
   <div class="case">
     <div class="num mono">04</div>
     <div>
@@ -294,7 +295,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section class="rail">
   <h2>What's deliberately simplified</h2>
   <p>A model built for a portfolio, not for manufacturing — these are the places that show, stated plainly rather than left for someone else to find.</p>
@@ -305,7 +306,7 @@
     <li><span class="tag mono">duplicated</span>The two battery cells are identical repeated instances, not independently modeled or wired.</li>
   </ul>
 </section>
-
+ 
 <section class="rail wide">
   <h2>Renders</h2>
   <div class="gallery">
@@ -323,7 +324,7 @@
     </figure>
   </div>
 </section>
-
+ 
 <section class="rail wide">
   <h2>Parameters</h2>
   <p>The full assembly is driven from one document-level parameter table, so a single value change (say, brush diameter) propagates through every dependent sketch.</p>
@@ -347,19 +348,42 @@
     </tbody>
   </table>
 </section>
-
-<section class="rail">
-  <div class="foot-links" style="margin-top: 8px;">
-    <a href="assets/bom.csv">Bill of materials (CSV) ↗</a>
+ 
+<section class="rail wide">
+  <h2>Drawing &amp; bill of materials</h2>
+  <p>Full engineering drawing (A3, three orthographic views plus isometric) and a 15-line bill of materials covering both modeled parts and off-the-shelf components.</p>
+  <table>
+    <thead><tr><th>#</th><th>Component</th><th>Qty</th><th>Material / spec</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Body Shell</td><td>1</td><td>ABS Plastic</td></tr>
+      <tr><td>2</td><td>Chassis</td><td>1</td><td>ABS Plastic</td></tr>
+      <tr><td>3</td><td>Top Cover</td><td>1</td><td>ABS Plastic</td></tr>
+      <tr><td>4</td><td>Drive Wheel</td><td>2</td><td>TPU Rubber</td></tr>
+      <tr><td>5</td><td>Guide Wheel</td><td>4</td><td>TPU Rubber</td></tr>
+      <tr><td>6</td><td>Drive Axle</td><td>1</td><td>Stainless Steel, ⌀4mm</td></tr>
+      <tr><td>7</td><td>Cleaning Brush Core</td><td>1</td><td>Nylon</td></tr>
+      <tr><td>8</td><td>Brush Drive Shaft</td><td>1</td><td>Stainless Steel, ⌀6mm</td></tr>
+      <tr><td>9</td><td>Brush Guard</td><td>1</td><td>ABS Plastic</td></tr>
+      <tr><td>10</td><td>Motor (N20 DC)</td><td>1</td><td>COTS – 6V, 200 RPM</td></tr>
+      <tr><td>11</td><td>Motor Bracket</td><td>1</td><td>ABS Plastic</td></tr>
+      <tr><td>12</td><td>Battery Tray</td><td>1</td><td>ABS Plastic</td></tr>
+      <tr><td>13</td><td>18650 Li-ion Cell</td><td>2</td><td>COTS – 3.7V, 3000mAh</td></tr>
+      <tr><td>14</td><td>M3 × 10mm Screw</td><td>8</td><td>Stainless Steel</td></tr>
+      <tr><td>15</td><td>Guide Bracket</td><td>4</td><td>ABS Plastic</td></tr>
+    </tbody>
+  </table>
+  <div class="foot-links" style="margin-top: 24px;">
+    <a href="assets/bom.csv" download>Download BOM (CSV) ↓</a>
   </div>
 </section>
-
+ 
 <footer class="rail">
   <div class="foot-links">
     <a href="https://github.com/rajeshhariharan1810/baseboard_cleaner_robot">Source repository ↗</a>
   </div>
   <p class="credit mono">Modeled in Autodesk Fusion 360.</p>
 </footer>
-
+ 
 </body>
 </html>
+ 
