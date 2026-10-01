@@ -2,7 +2,7 @@
 
 A parametric CAD model of an autonomous baseboard-cleaning robot, designed end to end in Autodesk Fusion 360 — 15 components, driven from a single document-level parameter table.
 
-**[→ View the full project page](https://rajeshhariharan1810.github.io/baseboard-cleaner-robot/)**
+**[→ View the full project page](https://rajeshhariharan1810.github.io/baseboard_cleaner_robot/)**
 
 ![Isometric render of the assembly](assets/renders/isometric.png)
 
